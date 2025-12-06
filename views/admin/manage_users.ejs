@@ -1,0 +1,39 @@
+<%- include('./partials/admin_nav') %>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4 fw-bold">Manage Users</h2>
+  <table class="table table-hover table-bordered shadow-sm rounded">
+    <thead class="table-success">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+     
+        <th>Actions</th>
+      </tr>
+    </thead>
+<tbody>
+  <% users.forEach((user, index) => { %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td>
+      
+        <a href="/admin/users/<%= user.id %>/bookings" class="btn btn-sm btn-outline-primary rounded-pill me-2">
+          <i class="bi bi-journal-bookmark-fill"></i> History
+        </a>
+
+       
+        <form method="POST" action="/admin/users/delete/<%= user.id %>" style="display:inline;">
+          <button class="btn btn-sm btn-outline-danger rounded-pill" onclick="return confirm('Are you sure?')">
+            <i class="bi bi-trash"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
+  <% }) %>
+</tbody>
+
+  </table>
+</div>

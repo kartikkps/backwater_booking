@@ -1,0 +1,26 @@
+<%- include('./partials/admin_nav') %>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h3 class="text-center fw-bold mb-4">Edit Boat Owner</h3>
+
+      <form action="/admin/owners/edit/<%= owner.id %>" method="POST" class="border p-4 shadow rounded bg-light">
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Name</label>
+          <input type="text" name="name" value="<%= owner.name %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Email</label>
+          <input type="email" name="email" value="<%= owner.email %>" class="form-control" required>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <a href="/admin/owners" class="btn btn-outline-secondary rounded-pill">Cancel</a>
+          <button type="submit" class="btn btn-primary rounded-pill px-4">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

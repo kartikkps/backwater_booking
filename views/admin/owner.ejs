@@ -1,0 +1,18 @@
+
+<h3 class="mt-5">Add New Boat Owner</h3>
+<form action="/admin/owners" method="POST">
+  <div class="row g-3">
+    <div class="col-md-4">
+      <input type="text" name="name" class="form-control" placeholder="Owner Name" required />
+    </div>
+    <div class="col-md-4">
+      <input type="email" name="email" class="form-control" placeholder="Email" required />
+    </div>
+    <div class="col-md-4">
+      <input type="password" name="password" class="form-control" placeholder="Password" required />
+    </div>
+  </div>
+  <div class="text-end mt-3">
+    <button type="submit" class="btn btn-success rounded-pill px-4">Add Owner</button>
+  </div>
+</form>

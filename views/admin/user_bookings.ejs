@@ -1,0 +1,27 @@
+<%- include('./partials/admin_nav') %>
+
+<div class="container mt-5">
+  <h2 class="mb-4 fw-bold text-center">All Bookings</h2>
+  <table class="table table-hover shadow-sm border rounded">
+    <thead class="table-danger">
+      <tr>
+        <th>#</th>
+        <th>User</th>
+        <th>Places</th>
+        <th>Booking Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% bookings.forEach((b, i) => { %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= b.user_name %></td>
+          <td><%= b.places %></td>
+          <td><%= b.booking_date ? new Date(b.booking_date).toLocaleDateString() : 'N/A' %></td>
+          <td><span class="badge bg-info"><%= b.status || 'Pending' %></span></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

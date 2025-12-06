@@ -1,0 +1,37 @@
+<%- include('./partials/user_nav') %>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4 fw-bold">Request to Become a Boat Owner</h2>
+
+  <% if (alreadyRequested) { %>
+    <div class="alert alert-info text-center">
+      Your request is under review or already approved.
+    </div>
+  <% } else { %>
+
+    <form method="POST" enctype="multipart/form-data" class="border p-4 rounded shadow-sm">
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Boat Name</label>
+        <input type="text" name="name" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Boat Type</label>
+        <input type="text" name="type" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Capacity</label>
+        <input type="number" name="capacity" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Boat Photo</label>
+        <input type="file" name="image" class="form-control" accept="image/*" required>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100 rounded-pill">Submit Request</button>
+    </form>
+
+  <% } %>
+</div>

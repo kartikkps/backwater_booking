@@ -1,0 +1,36 @@
+<%- include('./partials/owner_nav') %>
+
+<div class="container mt-4">
+  <h3 class="mb-4 fw-bold text-center">Set Price for Each Destination</h3>
+
+  <form method="POST" action="/owner/setprice">
+    <div class="mb-3">
+      <label>Select Boat:</label>
+      <select name="boat_id" class="form-select" onchange="this.form.submit()">
+        <% boats.forEach(b => { %>
+          <option value="<%= b.id %>" <%= b.id == selectedBoatId ? 'selected' : '' %>>
+            <%= b.name %> (<%= b.type %>)
+          </option>
+        <% }) %>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <% places.forEach(place => { %>
+        <div class="mb-2">
+          <label for="price_<%= place.id %>"><%= place.name %> Price:</label>
+          <input
+            type="number"
+            step="0.01"
+            name="prices[<%= place.id %>]"
+            class="form-control"
+            id="price_<%= place.id %>"
+            value="<%= place.price != null ? place.price : '' %>"
+          >
+        </div>
+      <% }) %>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Prices</button>
+  </form>
+</div>

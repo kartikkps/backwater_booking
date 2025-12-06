@@ -1,0 +1,61 @@
+<%- include('./partials/user_nav') %>
+
+<div class="container mt-4">
+  <h3>Book Trip with <%= boat.name %></h3>
+  <div class="row">
+    <% places.forEach(place => {
+      const priceObj = prices.find(p => p.boat_id === boat.id && p.place_id === place.id);
+      if (priceObj) { %>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <img src="<%= place.image %>" class="card-img-top" alt="<%= place.name %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= place.name %></h5>
+              <p class="card-text">Price: ₹<%= priceObj.price %></p>
+              <div class="form-check">
+                <input class="form-check-input place-checkbox" type="checkbox" 
+                       value="<%= place.id %>" data-price="<%= priceObj.price %>">
+                <label class="form-check-label">Select</label>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% } }) %>
+  </div>
+
+  <form action="/user/book/<%= boat.id %>" method="POST">
+    <input type="hidden" name="boat_id" value="<%= boat.id %>">
+    <input type="hidden" name="selected_places" id="selected_places">
+    <input type="hidden" name="total_price" id="total_price">
+
+    <div class="mt-3">
+      <h4>Total Price: ₹<span id="price_display">0</span></h4>
+      <button class="btn btn-success mt-2" type="submit">Confirm Booking</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const checkboxes = document.querySelectorAll('.place-checkbox');
+  const selectedPlacesInput = document.getElementById('selected_places');
+  const totalPriceInput = document.getElementById('total_price');
+  const priceDisplay = document.getElementById('price_display');
+
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      let total = 0;
+      let selected = [];
+
+      checkboxes.forEach(c => {
+        if (c.checked) {
+          total += parseInt(c.dataset.price);
+          selected.push(c.value);
+        }
+      });
+
+      selectedPlacesInput.value = selected.join(',');
+      totalPriceInput.value = total;
+      priceDisplay.innerText = total;
+    });
+  });
+</script>

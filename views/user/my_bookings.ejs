@@ -1,0 +1,47 @@
+<%- include('./partials/user_nav') %>
+
+<div class="container mt-5">
+  <h2 class="mb-4 fw-bold text-center">My Bookings</h2>
+  <% if (bookings.length === 0) { %>
+    <p class="text-center">You have no bookings yet.</p>
+  <% } else { %>
+    <table class="table table-hover shadow-sm border rounded">
+      <thead class="table-success">
+        <tr>
+          <th>#</th>
+          <th>Places</th>
+          <th>Booking Date</th>
+          <th>Total Price</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% bookings.forEach((b, i) => { %>
+          <tr>
+            <td><%= i + 1 %></td>
+            <td><%= b.places %></td>
+            <td><%= b.booking_date ? new Date(b.booking_date).toLocaleDateString() : 'N/A' %></td>
+            <td>₹<%= b.total_price %></td>
+            <td>
+              <% if (b.status === 'Cancelled') { %>
+                <span class="badge bg-danger">Cancelled</span>
+              <% } else { %>
+                <span class="badge bg-success"><%= b.status %></span>
+              <% } %>
+            </td>
+            <td>
+              <% if (b.status !== 'Cancelled') { %>
+                <form action="/user/cancel-booking/<%= b.id %>" method="POST" onsubmit="return confirm('Are you sure you want to cancel this booking?');">
+                  <button type="submit" class="btn btn-sm btn-outline-danger">Cancel</button>
+                </form>
+              <% } else { %>
+                <span class="text-muted">N/A</span>
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+</div>

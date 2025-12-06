@@ -1,0 +1,36 @@
+<%- include('./partials/admin_nav') %>
+
+<div class="container mt-5">
+  <h2 class="fw-bold text-center mb-4">Edit Destination</h2>
+
+  <form action="/admin/places/edit/<%= place.id %>" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="name" class="form-label fw-semibold">Place Name</label>
+      <input type="text" class="form-control" id="name" name="name" value="<%= place.name %>" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label fw-semibold">Description</label>
+      <input type="text" class="form-control" id="description" name="description" value="<%= place.description %>" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Current Image</label><br>
+      <img src="<%= place.image %>" alt="Place Image" height="150" class="rounded mb-2">
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label fw-semibold">Upload New Image (Optional)</label>
+      <input type="file" class="form-control" id="image" name="image" accept="image/*">
+    </div>
+  <!-- <div class="mb-3">
+      <label for="description" class="form-label fw-semibold">Price</label>
+      <input type="number" class="form-control" id="price" name="price" value="<%= place.price %>" required>
+    </div> -->
+
+    <div class="text-end">
+      <button type="submit" class="btn btn-primary px-4 rounded-pill">Update</button>
+      <a href="/admin/places" class="btn btn-secondary rounded-pill ms-2">Cancel</a>
+    </div>
+  </form>
+</div>

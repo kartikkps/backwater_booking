@@ -1,0 +1,65 @@
+<%- include('./partials/admin_nav') %>
+
+<style>
+  .profile-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ccc;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+
+  .overlay-upload {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .profile-container:hover .overlay-upload {
+    opacity: 1;
+  }
+
+  #profileImageInput {
+    display: none;
+  }
+</style>
+
+<div class="container mt-5 text-center">
+  <h2 class="fw-bold mb-4">Admin Profile</h2>
+
+  <div class="profile-container">
+    <label for="profileImageInput">
+      <img src="<%= admin.profile_image || '/images/default_profile.png' %>" class="profile-img" alt="Profile Image">
+      <div class="overlay-upload">Change</div>
+    </label>
+    <form id="uploadForm" action="/admin/profile/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" name="profileImage" id="profileImageInput" accept="image/*" onchange="document.getElementById('uploadForm').submit()">
+    </form>
+  </div>
+
+  <div class="mt-4">
+    <ul class="list-group list-group-flush text-start d-inline-block text-left">
+      <li class="list-group-item"><strong>Name:</strong> <%= admin.name %></li>
+      <li class="list-group-item"><strong>Email:</strong> <%= admin.email %></li>
+      <li class="list-group-item"><strong>Role:</strong> <%= admin.role %></li>
+    </ul>
+  </div>
+</div>

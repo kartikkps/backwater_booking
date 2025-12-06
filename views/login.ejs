@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - Backwater Honnavar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+
+    .bg-image {
+      background-image: url('/images/upper.png'); 
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+.btn-alpha-success {
+  background-color: rgba(40, 167, 69, 0.85); /* Bootstrap success green with alpha */
+  color: #fff;
+  border: 2px solid rgba(40, 167, 69, 1);    /* solid border with same color */
+  border-radius: 50px;                      /* fully rounded corners */
+  padding: 0.5rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-alpha-success:hover {
+  background-color: rgba(40, 167, 69, 1);    /* full opacity on hover */
+  color: #fff;
+}
+
+    .login-card {
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 400px;
+    }
+    a {
+  text-decoration: none;
+  color: #1858e4;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #1050e5;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="bg-image">
+    <div class="login-card">
+      <h3 class="text-center mb-4">Login</h3>
+      <form action="/login" method="POST">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" name="email" class="form-control" id="email" required placeholder="Enter email">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" id="password" required placeholder="Password">
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-alpha-success">Sign Up</button>
+        </div>
+      </form>
+     <p class="text-center mt-3">Don't have an account? <a href="/register">Create one</a></p>
+
+    </div>
+  </div>
+
+</body>
+</html>

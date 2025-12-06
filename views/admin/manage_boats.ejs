@@ -1,0 +1,31 @@
+<%- include('./partials/admin_nav') %>
+
+<div class="container mt-5">
+  <h3 class="text-center fw-bold mb-4">Boat Owner Requests</h3>
+
+  <% if (pendingBoats.length === 0) { %>
+    <p class="text-muted text-center">No pending requests.</p>
+  <% } else { %>
+    <div class="row g-4">
+      <% pendingBoats.forEach(boat => { %>
+        <div class="col-md-4">
+          <div class="card shadow-sm border-0 rounded-4">
+            <img src="/uploads/<%= boat.photo %>" class="card-img-top rounded-top" style="height:200px; object-fit:cover;" alt="Boat Photo">
+            <div class="card-body">
+              <h5 class="fw-bold"><%= boat.name %> (<%= boat.type %>)</h5>
+              <p class="mb-1">Capacity: <%= boat.capacity %></p>
+              <p class="mb-1">Requested by: <strong><%= boat.owner_name %></strong></p>
+              <p class="text-muted small"><%= boat.email %></p>
+              <form method="POST" action="/admin/boats/approve/<%= boat.id %>" class="d-inline">
+                <button class="btn btn-success btn-sm rounded-pill">Approve</button>
+              </form>
+              <form method="POST" action="/admin/boats/reject/<%= boat.id %>" class="d-inline">
+                <button class="btn btn-outline-danger btn-sm rounded-pill">Reject</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>

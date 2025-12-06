@@ -1,0 +1,29 @@
+<%- include('./partials/owner_nav') %>
+
+<div class="container mt-4">
+  <h3 class="mb-4 fw-bold text-center">Add New Boat</h3>
+
+  <form action="/owner/add-boat" method="POST" enctype="multipart/form-data" class="shadow p-4 rounded bg-light">
+    <div class="mb-3">
+      <label class="form-label">Boat Name</label>
+      <input type="text" name="name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Boat Type</label>
+      <input type="text" name="type" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Capacity</label>
+      <input type="number" name="capacity" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Boat Photo</label>
+      <input type="file" name="photo" class="form-control" accept="image/*" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Submit Boat for Approval</button>
+  </form>
+</div>

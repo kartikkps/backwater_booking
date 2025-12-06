@@ -1,0 +1,53 @@
+<%- include('./partials/admin_nav') %>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4 fw-bold">Manage Boat Owners</h2>
+  <table class="table table-hover table-bordered shadow-sm rounded">
+    <thead class="table-warning">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% owners.forEach((owner, index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= owner.name %></td>
+          <td><%= owner.email %></td>
+         <td>
+
+  <form method="POST" action="/admin/owners/delete/<%= owner.id %>" style="display:inline;">
+    <button class="btn btn-sm btn-danger rounded-circle" title="Delete">
+      <i class="bi bi-trash"></i>
+    </button>
+  </form>
+
+  <a href="/admin/owners/edit/<%= owner.id %>" class="btn btn-sm btn-warning rounded-circle ms-1" title="Edit">
+    <i class="bi bi-pencil"></i>
+  </a>
+
+
+  <a href="/admin/chat/<%= owner.id %>" class="btn btn-sm btn-info rounded-circle ms-1" title="Chat">
+    <i class="bi bi-chat-dots"></i>
+  </a>
+</td>
+
+        </tr>
+      <% }) %>
+    </tbody>
+
+
+  </table>
+
+<%- include('./owner') %>
+</div>
+
+<script>
+  function toggleAddForm() {
+    document.getElementById("addOwnerForm").classList.toggle("d-none");
+  }
+</script>
+

@@ -1,0 +1,47 @@
+<%- include('./partials/owner_nav') %>
+
+<div class="container mt-4">
+  <h3 class="text-center fw-bold mb-4">Your Boat Bookings</h3>
+
+  <% if (!bookings || bookings.length === 0) { %>
+    <div class="alert alert-info text-center">No bookings found.</div>
+  <% } else { %>
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Booking ID</th>
+          <th>User Name</th>
+          <th>Boat</th>
+          <th>Selected Places</th>
+          <th>Booking Date</th>
+          <th>Status / Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% bookings.forEach(b => { %>
+          <tr>
+            <td><%= b.booking_id %></td>
+            <td><%= b.user_name %></td>
+            <td><%= b.boat_name %></td>
+            <td><%= b.places?.join(', ') || 'N/A' %></td>
+            <td><%= new Date(b.booking_date).toLocaleString() %></td>
+            <td>
+              <% if (b.status && b.status.toLowerCase() === 'pending') { %>
+                <form action="/owner/bookings/<%= b.booking_id %>/approve" method="POST" style="display:inline-block;">
+                  <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                </form>
+                <form action="/owner/bookings/<%= b.booking_id %>/cancel" method="POST" style="display:inline-block;">
+                  <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                </form>
+              <% } else { %>
+                <span class="badge bg-<%= b.status === 'Approved' ? 'success' : 'danger' %>">
+                  <%= b.status %>
+                </span>
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+</div>
