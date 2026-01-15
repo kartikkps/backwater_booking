@@ -111,13 +111,14 @@ npm install
 ### 3️⃣ Configure Database
 1. Create a MySQL database
 2. Update database credentials in config/db.js
-
+```js
 module.exports = {
   host: "localhost",
   user: "root",
   password: "",
   database: "boat_booking"
 };
+```
 ### 4️⃣ Start the Server
 ```bash 
 npm start
