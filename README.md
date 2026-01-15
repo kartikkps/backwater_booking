@@ -63,7 +63,7 @@ A full-stack **Boat Booking and Tourism Management System** that allows users to
 ---
 
 ## 🗂 Project Structure
-
+```bash
 boat-booking-system/
 │
 ├── public/
@@ -93,7 +93,7 @@ boat-booking-system/
 ├── app.js
 ├── package.json
 └── README.md
-
+```
 
 ---
 
